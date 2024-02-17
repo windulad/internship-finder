@@ -1,38 +1,30 @@
-import React, { useEffect, useState }  from 'react';
+import React, { useState,useEffect } from "react";
 import './App.css';
-import Axios from 'axios';
-//import { useNavigate, useLocation } from 'react-router-dom';
-const SERVER_URL = 'http://127.0.0.1:8000';
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import Index from './components/Index';
+import SignIn from "./components/SignIn";
+import SignInStu from './components/SignInStu';
+import SignInComp from "./components/SignInComp";
+import SignUp from "./components/SignUp";
+import SignUpStu from './components/SignUpStu';
+import SignUpComp from "./components/SignUpStu";
+import StuHome from './components/StuHome';
 
-function App() {
-  const [responseData, setResponseData] = useState(null);
-  const [message, setMessage] = useState(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-        try {
-            const response = await Axios.get(SERVER_URL+'/student/stuhome/', { withCredentials: true });
-
-            // GET data from server
-            const data = response.data;
-            setResponseData(data);
-            console.log(data)
-
-            const message = response.data['message'];
-            setMessage(message)
-
-        } catch (error) {
-          console.error(error);
-        }
-      };
-      fetchData();
-    }, []);
-            
-    return (
-      <div>
-          Data: {message}
-      </div>
-    );
-  }
+function App(){
+  return(
+    <Router>
+      <Routes>
+          <Route path="/" element={<Index/>}/>
+          <Route path="/signin" element={<SignIn/>}/>
+          <Route path="/signinstu" element={<SignInStu/>}/>
+          <Route path="/signincomp" element={<SignInComp/>}/>
+          <Route path="/signup" element={<SignUp/>}/>
+          <Route path="/signupstu" element={<SignUpStu/>}/>
+          <Route path="/signupComp" element={<SignUpComp/>}/>
+          <Route path="/stuhome" element={<StuHome/>}/>
+      </Routes>
+    </Router>
+  );
+}
 
 export default App;
