@@ -41,7 +41,7 @@ function SignInComp() {
 
         // POST email, password to 'SERVER_URL' using Axios
         try{
-            Axios.post(SERVER_URL+'/authentication/signin/', json_details, { headers }, { withCredentials: true })
+            Axios.post(SERVER_URL+'/authentication/signincomp/', json_details, { headers }, { withCredentials: true })
             .then(response => {
                 setResponseData(response.data);
 
@@ -59,10 +59,10 @@ function SignInComp() {
                 setSessionKey(session_id);
                 
                 if (message[0] === 'error'){
-                    navigate('/signin');
+                    navigate('/signincomp');
                     setError(message[1])
                 }else if(message[0] === 'success'){
-                    navigate('/stuhome');
+                    navigate('/comphome');
                     // navigate('/enterskills', {state: data});
                 }
             })

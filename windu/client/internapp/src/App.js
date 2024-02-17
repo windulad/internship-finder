@@ -7,8 +7,9 @@ import SignInStu from './components/SignInStu';
 import SignInComp from "./components/SignInComp";
 import SignUp from "./components/SignUp";
 import SignUpStu from './components/SignUpStu';
-import SignUpComp from "./components/SignUpStu";
+import SignUpComp from "./components/SignUpComp";
 import StuHome from './components/StuHome';
+import CompHome from "./components/CompHome";
 
 function App(){
   return(
@@ -22,6 +23,7 @@ function App(){
           <Route path="/signupstu" element={<SignUpStu/>}/>
           <Route path="/signupComp" element={<SignUpComp/>}/>
           <Route path="/stuhome" element={<StuHome/>}/>
+          <Route path="/comphome" element={<CompHome/>}/>
       </Routes>
     </Router>
   );

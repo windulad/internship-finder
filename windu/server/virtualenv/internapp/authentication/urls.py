@@ -3,8 +3,10 @@ from . import views
 
 #URLConf
 urlpatterns = [
-    path('', views.home),
-    path('signup/', views.signup),
-    path('signin/', views.signin),
+    path('', views.index),
+    path('signupstu/', views.signupstudent),
+    path('signinstu/', views.signinstudent),
+    path('signupcomp/', views.signupcompany),
+    path('signincomp/', views.signincompany),
     path('signout/', views.signout),
 ]

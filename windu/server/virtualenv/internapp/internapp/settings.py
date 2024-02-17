@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'student',
     'authentication',
 ]
 
@@ -52,6 +51,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+AUTH_USER_MODEL = 'authentication.CustomUser'
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",  # React development server

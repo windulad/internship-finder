@@ -65,7 +65,7 @@ function SignUpStu() {
 
         // POST to 'SERVER_URL' using Axios
         try{
-            Axios.post(SERVER_URL+'/authentication/signup/', json_details, { headers }, { withCredentials: true })
+            Axios.post(SERVER_URL+'/authentication/signupstu/', json_details, { headers }, { withCredentials: true })
             .then(response => {
                 setResponseData(response.data);
 
@@ -83,7 +83,7 @@ function SignUpStu() {
                 setSessionKey(session_id);
 
                 if (message[0] === 'error'){
-                    navigate('/signup');
+                    navigate('/signupstu');
                     setError(message[1])
                 }else if(message[0] === 'success'){
                     //message("Success");

@@ -41,7 +41,7 @@ function SignInStu() {
 
         // POST email, password to 'SERVER_URL' using Axios
         try{
-            Axios.post(SERVER_URL+'/authentication/signin/', json_details, { headers }, { withCredentials: true })
+            Axios.post(SERVER_URL+'/authentication/signinstu/', json_details, { headers }, { withCredentials: true })
             .then(response => {
                 setResponseData(response.data);
 
@@ -59,7 +59,7 @@ function SignInStu() {
                 setSessionKey(session_id);
                 
                 if (message[0] === 'error'){
-                    navigate('/signin');
+                    navigate('/signinstu');
                     setError(message[1])
                 }else if(message[0] === 'success'){
                     navigate('/stuhome');
