@@ -10,6 +10,7 @@ import SignUpStu from './components/SignUpStu';
 import SignUpComp from "./components/SignUpComp";
 import StuHome from './components/StuHome';
 import CompHome from "./components/CompHome";
+import CompVacancy from "./components/CompVacancy";
 
 function App(){
   return(
@@ -24,6 +25,7 @@ function App(){
           <Route path="/signupComp" element={<SignUpComp/>}/>
           <Route path="/stuhome" element={<StuHome/>}/>
           <Route path="/comphome" element={<CompHome/>}/>
+          <Route path="/compvacancy" element={<CompVacancy/>}/>
       </Routes>
     </Router>
   );

@@ -13,11 +13,46 @@ function CompHome() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const [sessionKey, setSessionKey] = useState('');
+    // GET session_value from previos page
+    const location = useLocation();
+    const { state } = location;
+    const session_id = state.session_id;
+
+    // POST session_value to next page
+    const data = { session_id: session_id };
+
+    const handleclick1 = () => {
+        navigate('/compvacancy',  {state: data});
+    }
 
     const headers = {
         'X-CSRFToken': csrfToken,
     };
+
+    // Triggers onload
+    useEffect(() => {
+        const fetchData = async () => {
+            var json_details = JSON.stringify(data);
+            try {
+                const response = await Axios.post(SERVER_URL+'/vacancy/viewvacancy/', json_details, { headers }, { withCredentials: true });
+                setResponseData(response.data);
+
+                // GET message from server
+                const message = response.data.message;
+                console.log(message)
+                setMessage(message);
+ 
+                // GET session_value from server
+                const session_id = response.data.session_id;
+                console.log(session_id)
+
+                
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchData();
+    }, []);
 
     const handleLogOut = (event) => {
         event.preventDefault();
@@ -31,11 +66,6 @@ function CompHome() {
                 const message = response.data.message;
                 console.log(message)
                 setMessage(message);
-
-                // Retrieve the session key from local storage
-                const storedSessionKey = localStorage.getItem('sessionKey');
-                setSessionKey(storedSessionKey);
-                console.log(sessionKey)
                 
                 if (message[0] === 'error'){
                     navigate('/stuhome');
@@ -51,10 +81,17 @@ function CompHome() {
                 
     return (
         <div>
-            Company Home
-            <div>
-                <a class="btn btn-primary" onClick={handleLogOut}>Sign Out</a>
+            <div class="container">
+                <div>
+                    <a class="btn btn-primary" onClick={handleLogOut}>Sign Out</a>
+                </div>
+                <h3 class="mt-4">Company Dashboard</h3>
+                <div>
+                    <a class="btn btn-primary" onClick={handleclick1}>Post a vacancy</a>
+                </div>
             </div>
+            {/* Data: {message} */}
+            
         </div>
     );
 }

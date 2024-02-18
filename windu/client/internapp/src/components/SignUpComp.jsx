@@ -13,8 +13,6 @@ function SignUpComp() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const [sessionKey, setSessionKey] = useState('');
-
     const[username, setUsername] = useState('');
     const[fname, setFname] = useState('');
     const[lname, setLname] = useState('');
@@ -74,21 +72,19 @@ function SignUpComp() {
                 console.log(message)
                 setMessage(message);
 
-                // GET session_value from server(user_id)
+                // GET session_value from server
                 const session_id = response.data.session_id;
                 console.log(session_id)
 
-                // Store the session key in local storage
-                localStorage.setItem('sessionKey', session_id);
-                setSessionKey(session_id);
+                // POST session_value to next page
+                const data = { session_id: session_id };
 
                 if (message[0] === 'error'){
                     navigate('/signupcomp');
                     setError(message[1])
                 }else if(message[0] === 'success'){
                     //message("Success");
-                    navigate('/comphome');
-                    // navigate('/enterskills', {state: data});
+                    navigate('/comphome', {state: data});
                 }
             })
         } catch(error){
